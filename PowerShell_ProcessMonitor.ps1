@@ -1,14 +1,3 @@
-$ProcessName = "HueSync" # Process name as it appears in Task manager
-$ProcessExacutableLocation = "C:\Program Files\Hue Sync\HueSync.exe" # Path to the executable
-$ProcessCheckInterval = "30" # Number in minutes to wait between process checks. Needs to be at least 1
-# --------------------------------------------------------------------------------------
-# -------------------- DO NOT MODIFY BELOW THIS LINE -----------------------------------
-# --------------------------------------------------------------------------------------
-$Global:TimeNextRun = (Get-Date).AddMinutes($ProcessCheckInterval)
-$Global:Checking = $false
-Clear-Host
-Write-Host "Starting process monitor"
-CheckProcess
 Function  CheckProcess {
     $Global:TimeNextRun = (Get-Date).AddMinutes($ProcessCheckInterval)
     If($null -eq (Get-Process -Name $ProcessName -ErrorAction SilentlyContinue))
@@ -26,7 +15,6 @@ Function  CheckProcess {
         LoopTime
     } 
 }
-
 Function LoopTime {
     Do {        
         If ((Get-Date) -ge (Get-Date $Global:TimeNextRun))
@@ -39,3 +27,18 @@ Function LoopTime {
         Start-Sleep -Seconds 30
     } while ($Global:Checking -eq $false)
 }
+# --------------------------------------------------------------------------------------
+# -------------------- MODIFY THE VARIABLES BELOW THIS LINE ----------------------------
+# --------------------------------------------------------------------------------------
+$ProcessName = "HueSync" # Process name as it appears in Task manager
+$ProcessExacutableLocation = "C:\Program Files\Hue Sync\HueSync.exe" # Path to the executable
+$ProcessCheckInterval = "30" # Number in minutes to wait between process checks. Needs to be at least 1
+# --------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
+$Global:TimeNextRun = (Get-Date).AddMinutes($ProcessCheckInterval)
+$Global:Checking = $false
+Clear-Host
+Write-Host "Starting process monitor"
+CheckProcess
+
+
