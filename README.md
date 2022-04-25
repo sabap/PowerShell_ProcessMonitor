@@ -19,3 +19,4 @@ $ProcessCheckInterval = "30" # Number in minutes to wait between process checks.
 <b>$ProcessCheckInterval</b> is the amount of time <b>in minutes</b> that the script is to wait between checks.</br>
 <i>&nbsp;&nbsp;&nbsp;Note: This needs to be set to a value no less than 1.</br>
 </hr>
+04/25/2022 - Revised the code and placed the function declarations at the top of the script, to ensure compatability with Task Manager.
